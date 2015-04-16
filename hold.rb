@@ -12,13 +12,13 @@ class Hold
   end
 
   def self.list
-    Hold.all.each {|h| puts "#{h.name}: #{h.amount}"}
+    all.each {|h| puts "#{h.name}: $#{h.amount}"}
   end
 
   def self.total
-    total = 0
-    total = Hold.all.each {|e| total += e }
-    total
+    sum = 0
+    all.each {|h| sum += h.amount }
+    sum
   end
 
 end

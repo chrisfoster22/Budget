@@ -19,12 +19,21 @@ class Budget
     if answer == 1
       add_something
     elsif answer == 2
-      Expense.list
+      list("Expense")
     elsif answer == 3
-      Hold.list
+      list("Hold")
     elsif answer == 4
       available
     end
+  end
+
+  def list(type)
+    if type == "Expense"
+      Expense.list
+    else
+      Hold.list
+    end
+    prompt
   end
 
   def add_something
@@ -47,7 +56,7 @@ class Budget
   end
 
   def available
-    puts @total - Expense.total - Hold.total
+    puts "$#{@total - (Expense.total) - (Hold.total)}"
     prompt
   end
 

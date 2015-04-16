@@ -12,13 +12,13 @@ class Expense
   end
 
   def self.list
-    Expense.all.each {|e| puts "#{e.name}: #{e.amount}"}
+    Expense.all.each {|e| puts "#{e.name}: $#{e.amount}"}
   end
 
   def self.total
-    total = 0
-    total = Expense.all.each {|e| total += e }
-    total
+    sum = 0
+    Expense.all.each {|e| sum += e.amount }
+    sum
   end
 
 end
