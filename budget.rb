@@ -21,7 +21,7 @@ class Budget
     @expense
   end
 
-
+end
 
   "Welcome to Budgeter! How much money do you have to spend this month?"
   total = gets.chomp
