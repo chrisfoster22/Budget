@@ -2,28 +2,29 @@ class Budget
 
   def initialize(total)
     @total = total
-    @expense = Expense.new
-    @hold = Hold.new
   end
 
   def prompt
-    "Would you like to add an Expense or a Hold?"
+    puts "Would you like to add an Expense or a Hold?"
     answer = gets.chomp.downcase
     if answer == "expense"
-
-      Budget.add_expense
+      puts "What did you expend money on?"
+      name = gets.chomp
+      puts "How much did it cost?"
+      amount = gets.chomp.to_i
+      Expense.new(name, amount)
     elsif answer == "hold"
-      Budget.add_hold
+      puts "What did you need to hold for?"
+      name = gets.chomp
+      puts "How much are you holding?"
+      amount = gets.chomp.to_i
+      Hold.new(name, amount)
     end
-  end
-
-  def add_expense
-    @expense
   end
 
 end
 
-  "Welcome to Budgeter! How much money do you have to spend this month?"
+  puts "Welcome to Budgeter! How much money do you have to spend this month?"
   total = gets.chomp
   budget = Budget.new(total)
   budget.prompt
