@@ -1,10 +1,33 @@
+require_relative "hold"
+require_relative "expense"
+
 class Budget
 
+  attr_reader :total
+
   def initialize(total)
-    @total = total
+    @total = total.to_i
   end
 
   def prompt
+    puts "What would you like to do?"
+    puts "1: Add Expense or Hold"
+    puts "2: List Expenses"
+    puts "3: List Holds"
+    puts "4: Show Available Amount"
+    answer = gets.chomp.to_i
+    if answer == 1
+      add_something
+    elsif answer == 2
+      Expense.list
+    elsif answer == 3
+      Hold.list
+    elsif answer == 4
+      available
+    end
+  end
+
+  def add_something
     puts "Would you like to add an Expense or a Hold?"
     answer = gets.chomp.downcase
     if answer == "expense"
@@ -20,6 +43,12 @@ class Budget
       amount = gets.chomp.to_i
       Hold.new(name, amount)
     end
+    prompt
+  end
+
+  def available
+    puts @total - Expense.total - Hold.total
+    prompt
   end
 
 end
